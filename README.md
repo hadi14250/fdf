@@ -3,7 +3,7 @@
     <img src="github_gifs/fdf.png" alt="fdf picture" width="150" height="150">
   </a>
   <h3 align="center">FDF</h3>
-  Rendering Coordinates in a 3D isometric view
+  A wireframe renderer that turns elevation maps into 3D isometric landscapes.
   <br>
   <br>
 </div>
@@ -21,36 +21,61 @@
 
 # FDF
 
-Fainéant Development Framework, is a key project in the 42 curriculum where we build a minimalist 2D map viewer. The project involves creating a tool that reads and displays elevation maps in a simple, pixelated format. Using only pure ANSI C and steering clear of modern libraries or frameworks, we focus on essential skills like graphics rendering and memory management. The aim is to develop a deep understanding of low-level programming while delivering a functional, efficient viewer for visualizing 2D terrain data.
+**FDF** (*fil de fer* — "wire frame" in French) is a graphics project from the 42 curriculum. It reads a `.fdf` map file containing a grid of elevation values and renders it as a 3D wireframe in an isometric projection.
+
+The project is written from scratch in ANSI C using only the [MiniLibX](https://github.com/42Paris/minilibx-linux) graphics library and a custom libft. It focuses on fundamentals: parsing, memory management, linear algebra basics (rotation, projection, scaling), and Bresenham's line algorithm for drawing the connecting segments between points.
 
 <br>
 
-## Distinctive Features
+## Features
 
-  - 🔍 Zooming in and out.
-  - 🖼️ Included 2D view.
-  - 📏 Control height of coordinates.
-
-
-<br>
-
-## How to run
-
-- Go to root directory and run `make`
-- Run `./fdf test_maps/42.fdf`
-- Choose between different maps in `test_maps/`
+- 🗺️ Isometric 3D projection of any well-formed `.fdf` elevation map
+- 🔍 Zoom in and out on the rendered grid
+- 📏 Adjust the height (z-axis amplitude) of the terrain
+- 🎨 Color handling based on elevation
+- 🖼️ Toggle between flat (2D) and isometric (3D) views
+- ⬆️⬇️⬅️➡️ Pan the map around the window
 
 <br>
 
-## Program Controls
+## Build & Run
 
-<<`keyboard iputs`>>
+```sh
+make                       # compile the project
+./fdf test_maps/42.fdf     # run with one of the included maps
+```
 
-- `arrows` to move the map arround in the window.
-- `+ and -` to zoom in and out.
-- `1` to remove the elevated coordinates.
-- `2` turns map from 2D t 3D.
-- `3` turns map back to 3D.
-- `esc` to quit the game.
+A variety of test maps live in `test_maps/` — try `pyramide.fdf`, `julia.fdf`, `elem-col.fdf`, or `pylone.fdf` to see different terrain shapes.
 
 <br>
+
+## Controls
+
+| Key             | Action                                  |
+| --------------- | --------------------------------------- |
+| `← ↑ → ↓`       | Move the map around the window         |
+| `+` / `-`       | Zoom in / out                           |
+| `1`             | Flatten elevation (remove z-axis)       |
+| `2`             | Switch to 2D top-down view              |
+| `3`             | Switch back to 3D isometric view        |
+| `Esc`           | Quit                                    |
+
+<br>
+
+## Project Layout
+
+```
+fdf.c                 entry point
+parse_map.c           reads the .fdf file into a grid
+parse_cords.c         tokenizes coordinate / color values
+grids_and_points.c    builds the point matrix
+bressen.c             Bresenham line drawing
+visuals.c             isometric projection & rendering
+movements.c           pan / zoom / height transforms
+key_hooks.c           keyboard input handling
+color_handle.c        per-point color logic
+fdf.h                 shared types and prototypes
+libft/                custom standard library
+mlx/                  MiniLibX graphics library
+test_maps/            sample .fdf maps
+```
