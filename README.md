@@ -1,29 +1,33 @@
 <div align="center">
-<a href="https://github.com/hadi14250">
-    <img src="github_gifs/fdf.png" alt="fdf picture" width="150" height="150">
-  </a>
-  <h3 align="center">FDF</h3>
-  A wireframe renderer that turns elevation maps into 3D isometric landscapes.
-  <br>
-  <br>
-</div>
-
-<div align="center">
-<a href="https://github.com/hadi14250">
-    <img src="github_gifs/fdf.gif" alt="gif"  width="600" height="400">
+  <a href="https://github.com/hadi14250">
+    <img src="github_gifs/fdf.png" alt="fdf logo" width="150" height="150">
   </a>
 
+  <h1 align="center">FDF</h1>
 
+  <p align="center">
+    <i>Fil de fer</i> — a wireframe renderer that turns elevation maps into 3D isometric landscapes.
+  </p>
+
+  <br>
+
+  <a href="https://github.com/hadi14250">
+    <img src="github_gifs/fdf.gif" alt="fdf demo" width="600" height="400">
+  </a>
 </div>
 
 <br>
 
+## About
 
-# FDF
+**FDF** is a graphics project from the [42 curriculum](https://42.fr/). It reads a `.fdf` map file containing a grid of elevation values and renders it as a 3D wireframe using an isometric projection.
 
-**FDF** (*fil de fer* — "wire frame" in French) is a graphics project from the 42 curriculum. It reads a `.fdf` map file containing a grid of elevation values and renders it as a 3D wireframe in an isometric projection.
+The project is written from scratch in ANSI C using only the [MiniLibX](https://github.com/42Paris/minilibx-linux) graphics library and a custom `libft`. It exercises the fundamentals of computer graphics:
 
-The project is written from scratch in ANSI C using only the [MiniLibX](https://github.com/42Paris/minilibx-linux) graphics library and a custom libft. It focuses on fundamentals: parsing, memory management, linear algebra basics (rotation, projection, scaling), and Bresenham's line algorithm for drawing the connecting segments between points.
+- File parsing and memory management
+- Linear algebra: rotation, projection, scaling
+- [Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm) for drawing line segments
+- Real-time keyboard-driven transformations
 
 <br>
 
@@ -31,10 +35,10 @@ The project is written from scratch in ANSI C using only the [MiniLibX](https://
 
 - 🗺️ Isometric 3D projection of any well-formed `.fdf` elevation map
 - 🔍 Zoom in and out on the rendered grid
-- 📏 Adjust the height (z-axis amplitude) of the terrain
-- 🎨 Color handling based on elevation
-- 🖼️ Toggle between flat (2D) and isometric (3D) views
-- ⬆️⬇️⬅️➡️ Pan the map around the window
+- 📏 Adjust the terrain height (z-axis amplitude)
+- 🎨 Elevation-based color gradients
+- 🖼️ Toggle between flat 2D and isometric 3D views
+- 🎮 Pan the map smoothly around the window
 
 <br>
 
@@ -42,23 +46,30 @@ The project is written from scratch in ANSI C using only the [MiniLibX](https://
 
 ```sh
 make                       # compile the project
-./fdf test_maps/42.fdf     # run with one of the included maps
+./fdf test_maps/42.fdf     # render one of the included maps
 ```
 
-A variety of test maps live in `test_maps/` — try `pyramide.fdf`, `julia.fdf`, `elem-col.fdf`, or `pylone.fdf` to see different terrain shapes.
+A variety of test maps live in `test_maps/`. Try a few to see different terrain shapes:
+
+```sh
+./fdf test_maps/pyramide.fdf
+./fdf test_maps/julia.fdf
+./fdf test_maps/elem-col.fdf
+./fdf test_maps/pylone.fdf
+```
 
 <br>
 
 ## Controls
 
-| Key             | Action                                  |
-| --------------- | --------------------------------------- |
-| `← ↑ → ↓`       | Move the map around the window         |
-| `+` / `-`       | Zoom in / out                           |
-| `1`             | Flatten elevation (remove z-axis)       |
-| `2`             | Switch to 2D top-down view              |
-| `3`             | Switch back to 3D isometric view        |
-| `Esc`           | Quit                                    |
+| Key         | Action                              |
+| ----------- | ----------------------------------- |
+| `← ↑ → ↓`   | Pan the map around the window       |
+| `+` / `-`   | Zoom in / out                       |
+| `1`         | Flatten elevation (remove z-axis)   |
+| `2`         | Switch to 2D top-down view          |
+| `3`         | Switch back to 3D isometric view    |
+| `Esc`       | Quit                                |
 
 <br>
 
@@ -79,3 +90,9 @@ libft/                custom standard library
 mlx/                  MiniLibX graphics library
 test_maps/            sample .fdf maps
 ```
+
+<br>
+
+## Author
+
+Built by [hadi14250](https://github.com/hadi14250) as part of the 42 curriculum.
